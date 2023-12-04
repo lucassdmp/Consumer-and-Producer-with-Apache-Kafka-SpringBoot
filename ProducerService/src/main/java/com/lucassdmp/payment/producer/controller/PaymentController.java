@@ -15,14 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentController {
     @Autowired
     private PaymentService paymentService;
-    @GetMapping("/pay/send")
+    
+    @GetMapping(PaymentServiceConstants.SEND_PAY)
     public ResponseEntity<String> sendPayment(
-            @RequestParam("value") double value,
-            @RequestParam("name") String name,
-            @RequestParam("cpf") String cpf
+            @RequestParam("value") double value
     ) {
 
-        Payment payment = new Payment(value, name, cpf);
+        Double payment = value;
 
         paymentService.sendPayment(payment);
 

@@ -7,7 +7,6 @@ public class PaymentServiceConstants {
     public static final String CONTAINER_FACTORY = "paymentContainerFactory";
 
     // Routes
-    public static final String GET_PAYMENT = "/get/payment";
-    public static final String CONSUMER = "/consumer";
+    public static final String SEND_PAY = "/pay/send";
 
 }

@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lucassdmp.payment.classes.Payment;
 import com.lucassdmp.payment.consumer.service.KafkaConsumer;
 import com.lucassdmp.payment.constants.PaymentServiceConstants;
 
@@ -22,7 +21,7 @@ public class PaymentController{
     }
 
     @GetMapping
-    public Payment getPayment(){
+    public Double getPayment(){
         return kafkaconsumer.getPayment();
     }
 }
