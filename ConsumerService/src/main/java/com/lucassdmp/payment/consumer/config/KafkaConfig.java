@@ -32,10 +32,30 @@ public class KafkaConfig {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory paymentListener(){
+    public ConsumerFactory<String, Double> consumerFactory2() {
+        Map<String, Object> config = new HashMap<>();
+
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, PaymentServiceConstants.BOOTSTRAP_SERVER);
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, PaymentServiceConstants.GROUP_ID2);
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, DoubleDeserializer.class);
+
+        return new DefaultKafkaConsumerFactory<String, Double>(config, new StringDeserializer(), new DoubleDeserializer());
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, Double> paymentListener(){
         ConcurrentKafkaListenerContainerFactory<String, Double> factory = 
         new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, Double> paymentListener2() {
+        ConcurrentKafkaListenerContainerFactory<String, Double> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory2());
+        return factory;
+    }
+
 }
