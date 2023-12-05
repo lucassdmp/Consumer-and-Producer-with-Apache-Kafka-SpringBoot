@@ -12,9 +12,9 @@ public class PaymentService {
     private static final Logger LOGGER = LoggerFactory.getLogger(PaymentService.class);
 
     @Autowired
-    private KafkaTemplate<String, Double> kafkaTemplate;
+    private KafkaTemplate<String, String> kafkaTemplate;
 
-    public boolean sendPayment(Double payment){
+    public boolean sendPayment(String payment){
         this.kafkaTemplate.send(PaymentServiceConstants.TOPIC, payment);
         LOGGER.info("Data send succefully");
         return true;

@@ -1,5 +1,7 @@
 package com.lucassdmp.payment.consumer.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,23 +22,9 @@ public class PaymentController {
     }
 
     @GetMapping(PaymentServiceConstants.GET_PAYMENT)
-    public Double getPayment() {
-        Double payment = kafkaConsumer.getPayment();
+    public String getPayment() {
+        String payment = kafkaConsumer.getPayment();
         System.out.println("Returning payment: " + payment);
         return payment;
-    }
-
-    @GetMapping("/payments")
-    public String totalPayments() {
-        String total = kafkaConsumer.getPayments();
-        System.out.println("Returning total payments: " + total);
-        return total;
-    }
-
-    @GetMapping("/total")
-    public Double total() {
-        Double total = kafkaConsumer.totalPayments();
-        System.out.println("Returning total payments: " + total);
-        return total;
     }
 }

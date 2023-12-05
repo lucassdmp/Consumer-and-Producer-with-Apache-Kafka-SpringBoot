@@ -18,10 +18,10 @@ public class PaymentController {
     
     @GetMapping(PaymentServiceConstants.SEND_PAY)
     public ResponseEntity<String> sendPayment(
-            @RequestParam("value") double value
+            @RequestParam("value") String value
     ) {
 
-        Double payment = value;
+        String payment = value;
 
         paymentService.sendPayment(payment);
 
