@@ -44,18 +44,18 @@ public class KafkaConfig {
     }
 
     @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, String> paymentListener2(){
+        ConcurrentKafkaListenerContainerFactory<String, String> factory = 
+        new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory2());
+        return factory;
+    }
+
+    @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> paymentListener(){
         ConcurrentKafkaListenerContainerFactory<String, String> factory = 
         new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
-
-    @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, String> paymentListener2() {
-        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory2());
-        return factory;
-    }
-
 }
